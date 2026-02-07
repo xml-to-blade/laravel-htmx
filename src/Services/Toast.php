@@ -16,6 +16,12 @@ class Toast
 
     public function __toString(): string
     {
+
+        return json_encode([
+            'heading' => $this->heading,
+            'variant' => $this->variant->value,
+        ]);
+
         return Blade::render('<x-htmx::toast :$heading :$variant />', [
             'heading' => $this->heading,
             'variant' => $this->variant->value,
