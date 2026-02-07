@@ -56,3 +56,37 @@ class ModalController
 ### Toast
 
 ### Modal
+
+## Services
+
+### Menu
+
+The `Menu` service is a Builder class that you add a `MenuItem` to.
+
+#### Getting started
+
+To build a Menu, simply instantiate one with the `new` keyword. You can then chain on as many `MenuItem`s as you wish.
+
+```php
+<?php
+
+use App\Http\Controllers;
+use Illuminate\Support\Facades\Route;
+use XmlBlade\LaravelHtmx\Services\Menu;
+use XmlBlade\LaravelHtmx\Services\MenuItem;
+
+Route::get('/', function () {
+
+    $menu = (new Menu)
+        ->item(new MenuItem('Menu Item One'))
+        ->item(new MenuItem('Menu Item Two', 'academic-cap'));
+
+    return view('test', [
+        'menu' => $menu,
+    ]);
+});
+
+```
+
+
+### Form
