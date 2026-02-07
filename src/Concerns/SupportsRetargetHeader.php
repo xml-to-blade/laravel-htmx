@@ -10,6 +10,8 @@ trait SupportsRetargetHeader
     {
         $this->retarget = $target;
 
+        $this->headers->set('HX-Retarget', $target);
+
         return $this;
     }
 

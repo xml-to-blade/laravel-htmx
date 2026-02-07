@@ -12,10 +12,14 @@ trait SupportsReswapHeader
     {
         $this->reswap = $swap;
 
+        if ($swap) {
+            $this->headers->set('HX-Reswap', $swap->value);
+        }
+
         return $this;
     }
 
-    public function getReswap(): ?string
+    public function getReswap(): ?SwapAttribute
     {
         return $this->reswap;
     }

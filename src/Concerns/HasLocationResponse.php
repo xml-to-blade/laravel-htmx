@@ -10,6 +10,8 @@ trait HasLocationResponse
     {
         $this->location = $path;
 
+        $this->headers->set('HX-Location', $path);
+
         return $this;
     }
 

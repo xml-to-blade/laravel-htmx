@@ -10,6 +10,8 @@ trait SupportsRedirectHeader
     {
         $this->redirect = $path;
 
+        $this->headers->set('HX-Redirect', $path);
+
         return $this;
     }
 

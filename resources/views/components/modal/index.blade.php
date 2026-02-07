@@ -1,12 +1,22 @@
 @props([
 'name' => 'dialog',
-'flyout' => false
+'flyout' => false,
+'triggerless' => false,
+'trigger' => null
 ])
-<!-- Include this script tag or install `@tailwindplus/elements` via npm: -->
-<script src="https://cdn.jsdelivr.net/npm/@tailwindplus/elements@1" type="module"></script>
-<button command="show-modal" commandfor="{{ $name }}" class="rounded-md bg-gray-950/5 px-2.5 py-1.5 text-sm font-semibold text-gray-900 hover:bg-gray-950/10 dark:bg-white/10 dark:text-white dark:inset-ring dark:inset-ring-white/5 dark:hover:bg-white/20">Open dialog</button>
+
+@if (!$triggerless)
+    @if ($trigger && $trigger->isNotEmpty())
+        {{ $trigger }}
+    @else
+        <!-- Include this script tag or install `@tailwindplus/elements` via npm: -->
+        <script src="https://cdn.jsdelivr.net/npm/@tailwindplus/elements@1" type="module"></script>
+        <button command="show-modal" commandfor="{{ $name }}" class="rounded-md bg-gray-950/5 px-2.5 py-1.5 text-sm font-semibold text-gray-900 hover:bg-gray-950/10 dark:bg-white/10 dark:text-white dark:inset-ring dark:inset-ring-white/5 dark:hover:bg-white/20">Open dialog</button>
+    @endif
+@endif
+
 <el-dialog>
-  <dialog id="{{ $name }}" aria-labelledby="dialog-title" class="fixed inset-0 size-auto max-h-none max-w-none overflow-y-auto bg-transparent backdrop:bg-transparent">
+  <dialog data-modal-name="{{ $name }}" id="{{ $name }}" aria-labelledby="dialog-title" class="fixed inset-0 size-auto max-h-none max-w-none overflow-y-auto bg-transparent backdrop:bg-transparent">
         <el-dialog-backdrop
             class="fixed inset-0 bg-gray-500/75 transition-opacity data-closed:opacity-0 data-enter:duration-300 data-enter:ease-out data-leave:duration-200 data-leave:ease-in dark:bg-gray-900/50"></el-dialog-backdrop>
         @if($flyout)

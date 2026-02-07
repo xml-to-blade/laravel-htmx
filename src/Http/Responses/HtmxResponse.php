@@ -10,6 +10,7 @@ use XmlBlade\LaravelHtmx\Utils;
 class HtmxResponse extends Response
 {
     use Concerns\HasLocationResponse;
+    use Concerns\SupportsModals;
     use Concerns\SupportsOutOfBand;
     use Concerns\SupportsRedirectHeader;
     use Concerns\SupportsReswapHeader;
@@ -28,7 +29,14 @@ class HtmxResponse extends Response
 
         $this->setContent($content);
 
+        $this->appendHeaders();
+
         return parent::prepare($request);
+    }
+
+    private function appendHeaders(): void
+    {
+        //
     }
 
     private function appendTriggers(): void

@@ -14,6 +14,14 @@
 
         wrapper.innerHTML = toast;
     });
+    document.body.addEventListener("openModal", function(evt){
+        let modal = (evt.detail.value);
+        let modalElement = document.querySelector('[data-modal-name=' + modal + ']');
+        if (!modalElement) {
+            return;
+        }
+        modalElement.showModal();
+    });
     </script>
 </div>
 
