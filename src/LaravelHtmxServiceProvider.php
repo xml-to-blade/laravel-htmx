@@ -16,7 +16,7 @@ class LaravelHtmxServiceProvider extends PackageServiceProvider
          * More info: https://github.com/spatie/laravel-package-tools
          */
         $package
-            ->name('laravel-htmx')
+            ->name('htmx')
             ->hasConfigFile()
             ->hasViews()
             ->hasMigration('create_laravel_htmx_table')
