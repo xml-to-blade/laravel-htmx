@@ -10,8 +10,13 @@ class Menu
 
     protected string $view = 'htmx::components.menu.index';
 
-    public function item(MenuItem $item): self
+    public function item(string|MenuItem $item): self
     {
+
+        if (is_string($item)) {
+            $item = new MenuItem(label: $item);
+        }
+
         $this->items[] = $item;
 
         return $this;

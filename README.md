@@ -88,5 +88,34 @@ Route::get('/', function () {
 
 ```
 
+#### Nested Menus
+
+Creating nested or sub-menus are trivial, as `MenuItem` simply extends the `Menu` service, allowing you to chain `MenuItem`s to `MenuItem`.
+
+```php
+<?php
+
+use App\Http\Controllers;
+use Illuminate\Support\Facades\Route;
+use XmlBlade\LaravelHtmx\Services\Menu;
+use XmlBlade\LaravelHtmx\Services\MenuItem;
+
+Route::get('/', function () {
+
+    $menu = (new Menu)
+        ->item(new MenuItem('Menu Item One'))
+        ->item(new MenuItem('Menu Item Two', 'academic-cap'))
+        ->item(
+            (new MenuItem('Item 3', 'home'))
+                ->item('Sub one')
+                ->item('Sub two')
+        );
+
+    return view('test', [
+        'menu' => $menu,
+    ]);
+});
+```
+
 
 ### Form

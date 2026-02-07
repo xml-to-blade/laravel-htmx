@@ -2,24 +2,7 @@
     @foreach($items as $item)
         <x-htmx::menu.item
             :label="$item->getLabel()"
-            :icon="$item->getIcon()" />
+            :icon="$item->getIcon()"
+            :items="$item->getItems()" />
     @endforeach
-  <li>
-    <details open>
-      <summary>Parent</summary>
-      <ul>
-        <li><a>Submenu 1</a></li>
-        <li><a>Submenu 2</a></li>
-        <li>
-          <details open>
-            <summary>Parent</summary>
-            <ul>
-              <li><a>Submenu 1</a></li>
-              <li><a>Submenu 2</a></li>
-            </ul>
-          </details>
-        </li>
-      </ul>
-    </details>
-  </li>
 </ul>
