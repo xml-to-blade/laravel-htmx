@@ -2,8 +2,17 @@
 
 namespace XmlBlade\LaravelHtmx\Services;
 
+use XmlBlade\LaravelHtmx\Concerns\IsBuilderObject;
+use XmlBlade\LaravelHtmx\Concerns\SupportsFields;
+use XmlBlade\LaravelHtmx\Concerns\Utils;
+
 class Form
 {
+    use IsBuilderObject;
+    use SupportsFields;
+    use Utils\HasDescription;
+    use Utils\HasTitle;
+
     protected string $view = 'htmx::components.form.index';
 
     public function __construct(
@@ -13,41 +22,12 @@ class Form
         //
     }
 
-    public function title(string $title): self
-    {
-        $this->title = $title;
-
-        return $this;
-    }
-
-    public function getTitle(): string
-    {
-        return $this->title;
-    }
-
-    public function description(?string $description = null): self
-    {
-        $this->description = $description;
-
-        return $this;
-    }
-
-    public function getDescription(): ?string
-    {
-        return $this->description;
-    }
-
     public function toArray(): array
     {
         return [
             'title' => $this->getTitle(),
             'description' => $this->getDescription(),
+            'fields' => $this->getFields(),
         ];
-    }
-
-    public function __toString(): string
-    {
-        return view($this->view, $this->toArray())
-            ->render();
     }
 }

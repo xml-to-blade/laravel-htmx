@@ -2,8 +2,13 @@
 
 namespace XmlBlade\LaravelHtmx\Services;
 
+use XmlBlade\LaravelHtmx\Concerns\Utils;
+
 class MenuItem extends Menu
 {
+    use Utils\HasIcon;
+    use Utils\HasLabel;
+
     public function __construct(
         protected string $label = 'Item',
         protected ?string $icon = null,
@@ -12,30 +17,6 @@ class MenuItem extends Menu
         protected string $variant = 'soft',
     ) {
         //
-    }
-
-    public function label(string $label): self
-    {
-        $this->label = $label;
-
-        return $this;
-    }
-
-    public function getLabel(): string
-    {
-        return $this->label;
-    }
-
-    public function icon(?string $icon): self
-    {
-        $this->icon = $icon;
-
-        return $this;
-    }
-
-    public function getIcon(): ?string
-    {
-        return $this->icon;
     }
 
     public function shortcut(?string $shortcut): self

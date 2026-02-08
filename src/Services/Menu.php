@@ -2,8 +2,12 @@
 
 namespace XmlBlade\LaravelHtmx\Services;
 
+use XmlBlade\LaravelHtmx\Concerns\IsBuilderObject;
+
 class Menu
 {
+    use IsBuilderObject;
+
     protected array $items = [];
 
     protected string $position = 'bottom-end';
@@ -34,13 +38,10 @@ class Menu
         return $this->items;
     }
 
-    public function __toString(): string
+    public function toArray(): array
     {
-
-        $items = $this->getItems();
-
-        return view($this->view, [
-            'items' => $items,
-        ])->render();
+        return [
+            'items' => $this->getItems(),
+        ];
     }
 }
